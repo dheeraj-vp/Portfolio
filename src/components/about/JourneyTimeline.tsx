@@ -1,9 +1,9 @@
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { SPRING_SMOOTH } from '../../lib/animation';
 import { about, type JourneyMilestone } from '../../data/about';
 
-const typeColors: Record<JourneyMilestone['type'], string> = {
+const typeColors: Record<JourneyMilestone['type'] | 'skill', string> = {
   education:   '#2563EB',
   skill:       '#7C3AED',
   experience:  '#22C55E',
@@ -11,7 +11,7 @@ const typeColors: Record<JourneyMilestone['type'], string> = {
   future:      '#71717A',
 };
 
-const typeLabels: Record<JourneyMilestone['type'], string> = {
+const typeLabels: Record<JourneyMilestone['type'] | 'skill', string> = {
   education:   'Education',
   skill:       'Skill',
   experience:  'Experience',
@@ -193,7 +193,6 @@ function MilestoneRow({
 
 export function JourneyTimeline() {
   const lineRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(lineRef, { once: true, margin: '-80px' });
 
   return (
     <div style={{ marginBottom: '3rem' }}>
@@ -253,7 +252,7 @@ export function JourneyTimeline() {
             borderBottom: '1px solid rgba(255,255,255,0.06)',
           }}
         >
-          {(Object.entries(typeColors) as [JourneyMilestone['type'], string][])
+          {(Object.entries(typeColors) as [JourneyMilestone['type'] | 'skill', string][])
             .filter(([key]) => key !== 'skill')
             .map(([type, color]) => (
               <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

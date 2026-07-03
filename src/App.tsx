@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
 import { ExperienceSection } from './components/experience/ExperienceSection';
+import { ProjectsSection } from './components/projects/ProjectsSection';
 
 // Placeholder sections — will be built next
 function PlaceholderSection({ id, label }: { id: string; label: string }) {
@@ -27,7 +28,7 @@ function App() {
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
-        <PlaceholderSection id="projects"   label="Projects" />
+        <ProjectsSection />
         <PlaceholderSection id="blogs"      label="Blogs" />
         <PlaceholderSection id="resume"     label="Resume" />
         <PlaceholderSection id="contact"    label="Contact" />

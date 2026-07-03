@@ -12,8 +12,6 @@ export function AboutHeading() {
     animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
   };
 
-  const allWords = [...words1, ...words2];
-
   return (
     <div style={{ marginBottom: '3rem' }}>
       {/* Section label */}

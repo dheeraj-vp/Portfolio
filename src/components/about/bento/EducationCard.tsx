@@ -96,11 +96,11 @@ export function EducationCard() {
           </span>
         </div>
 
-        <ProgressBar value={vit.gpa} max={vit.gpaMax} color="#22C55E" />
+        <ProgressBar value={vit.gpa ?? 0} max={vit.gpaMax ?? 10} color="#22C55E" />
 
         {/* Focus tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: '0.75rem' }}>
-          {vit.focus.map(tag => (
+          {vit.focus?.map(tag => (
             <span
               key={tag}
               style={{

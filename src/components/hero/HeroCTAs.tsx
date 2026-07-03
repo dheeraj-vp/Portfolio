@@ -2,7 +2,6 @@ import {
   motion,
   useMotionValue,
   useSpring,
-  useTransform,
 } from 'framer-motion';
 import { useRef } from 'react';
 import { SPRING_SMOOTH, HERO_DELAYS, BUTTON_TAP } from '../../lib/animation';
@@ -68,7 +67,7 @@ function MagneticButton({
         textDecoration: 'none',
         x: springX,
         y: springY,
-      } as React.CSSProperties}
+      } as any}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow =
           '0 0 28px rgba(124,58,237,0.35)';

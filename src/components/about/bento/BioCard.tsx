@@ -39,7 +39,7 @@ function CodeSnippet() {
       .replace(/\b(String)\b/g, '<ty>$1</ty>')
       .replace(/\b(focus|values|asList)\b/g, '<id>$1</id>')
       .replace(/"([^"]+)"/g, '"<str>$1</str>"')
-      .replace(/(&lt;|&gt;|[{}()\[\]])/g, '<punc>$1</punc>');
+      .replace(/(&lt;|&gt;|[{}()[\]])/g, '<punc>$1</punc>');
 
     return (
       <div

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { SPRING_SMOOTH } from '../../lib/animation';
 
 export function SectionTransition() {
   return (
@@ -39,7 +38,7 @@ export function SectionTransition() {
           paddingBottom: 2,
           transition: 'color 0.2s, border-color 0.2s',
         }}
-        whileHover={{ color: '#FAFAFA' } as object}
+        whileHover={{ color: '#FAFAFA' }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLElement).style.color = '#FAFAFA';
           (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)';
