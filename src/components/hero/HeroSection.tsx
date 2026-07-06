@@ -11,7 +11,7 @@ import { HeroMetrics } from './HeroMetrics';
 import { HeroCTAs } from './HeroCTAs';
 import { SocialRow } from './SocialRow';
 import { ScrollIndicator } from './ScrollIndicator';
-import { ProofElement } from './ProofElement';
+import { ProfilePhoto } from './ProfilePhoto';
 
 export function HeroSection() {
   const reduced = useReducedMotion();
@@ -26,10 +26,10 @@ export function HeroSection() {
       {/* Background system */}
       <HeroBackground />
 
-      {/* Main layout — splits text column and proof element */}
+      {/* Main layout — splits text column and profile photo */}
       <div className="relative z-10 flex-1 flex items-center">
         <div
-          className="w-full flex items-center justify-between gap-12"
+          className="w-full flex flex-col lg:flex-row items-center justify-between gap-12"
           style={{ padding: '0 clamp(1.25rem, 5vw, 3rem)', maxWidth: '90rem', margin: '0 auto', width: '100%' }}
         >
           {/* ── Left / Center: Hero content column ──────── */}
@@ -37,7 +37,7 @@ export function HeroSection() {
             className="flex flex-col"
             style={{
               gap: 'clamp(20px, 2.5vw, 32px)',
-              paddingTop: 'clamp(140px, 18vh, 200px)',
+              paddingTop: 'clamp(120px, 15vh, 180px)',
               paddingBottom: 'clamp(80px, 10vh, 120px)',
               maxWidth: '52rem',
               flex: 1,
@@ -48,6 +48,11 @@ export function HeroSection() {
               label={profile.availability.label}
               active={profile.availability.active}
             />
+
+            {/* Profile Photo on mobile/tablet */}
+            <div className="block lg:hidden my-2 self-center">
+              <ProfilePhoto />
+            </div>
 
             {/* 2. Headline */}
             <HeroHeadline
@@ -92,9 +97,9 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ── Right: Proof Element (desktop only) ─────── */}
+          {/* ── Right: Profile Photo (desktop only) ─────── */}
           <div className="flex-shrink-0 self-center pt-24 hidden lg:flex">
-            <ProofElement techs={profile.proofTechs} />
+            <ProfilePhoto />
           </div>
         </div>
       </div>
