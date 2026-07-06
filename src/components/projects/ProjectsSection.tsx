@@ -61,8 +61,12 @@ function ProjectCard({ project, onClick, index }: ProjectCardProps) {
       transition={{ ...SPRING_SMOOTH, delay: index * 0.05 }}
       onClick={onClick}
       style={{
-        background: 'var(--card)',
-        border: '1px solid var(--border)',
+        background: project.isFeatured
+          ? 'linear-gradient(to bottom right, rgba(24, 24, 27, 0.95), rgba(18, 18, 20, 0.95))'
+          : 'var(--card)',
+        border: project.isFeatured
+          ? '1px solid rgba(139, 92, 246, 0.25)'
+          : '1px solid var(--border)',
         borderRadius: 'var(--radius-lg)',
         padding: '1.75rem',
         cursor: 'pointer',
@@ -74,13 +78,19 @@ function ProjectCard({ project, onClick, index }: ProjectCardProps) {
         minHeight: '280px',
         transition: 'border-color 0.25s, box-shadow 0.25s',
       }}
-      className="group hover:border-zinc-700/60 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]"
+      className="group hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)]"
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.16)';
-        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.6)';
+        e.currentTarget.style.borderColor = project.isFeatured
+          ? 'rgba(167, 139, 250, 0.6)'
+          : 'rgba(255, 255, 255, 0.16)';
+        e.currentTarget.style.boxShadow = project.isFeatured
+          ? '0 12px 40px rgba(124, 58, 237, 0.15), 0 0 1px rgba(124, 58, 237, 0.25) inset'
+          : '0 12px 40px rgba(0, 0, 0, 0.6)';
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.borderColor = 'var(--border)';
+        e.currentTarget.style.borderColor = project.isFeatured
+          ? 'rgba(139, 92, 246, 0.25)'
+          : 'var(--border)';
         e.currentTarget.style.boxShadow = 'none';
       }}
     >
@@ -89,14 +99,35 @@ function ProjectCard({ project, onClick, index }: ProjectCardProps) {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 100% 0%, rgba(37,99,235,0.03) 0%, transparent 60%)',
+          background: project.isFeatured
+            ? 'radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 60%)'
+            : 'radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)',
           pointerEvents: 'none',
         }}
       />
 
       <div>
         {/* Categories indicator */}
-        <div style={{ display: 'flex', gap: 6, marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          {project.badge && (
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 9,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(37, 99, 235, 0.15))',
+                border: '1px solid rgba(139, 92, 246, 0.35)',
+                color: '#C084FC',
+                padding: '2px 8px',
+                borderRadius: '4px',
+                fontWeight: 600,
+                boxShadow: '0 0 8px rgba(124, 58, 237, 0.15)',
+              }}
+            >
+              ✦ {project.badge}
+            </span>
+          )}
           {project.categories.map(cat => (
             <span
               key={cat}
@@ -211,25 +242,61 @@ function ProjectCard({ project, onClick, index }: ProjectCardProps) {
             borderTop: '1px solid rgba(255,255,255,0.03)',
           }}
         >
-          <span
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 12,
+                color: 'var(--text-muted)',
+                transition: 'color 0.2s',
+              }}
+              className="group-hover:text-zinc-200"
+            >
+              Learn More
+            </span>
+            <ChevronRight
+              size={16}
+              style={{
+                color: 'var(--text-muted)',
+                transition: 'transform 0.25s, color 0.25s',
+              }}
+              className="group-hover:translate-x-1 group-hover:text-white"
+            />
+          </div>
+
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            title="View Code on GitHub"
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 12,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 30,
+              height: 30,
+              borderRadius: '50%',
+              background: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
               color: 'var(--text-muted)',
-              transition: 'color 0.2s',
+              transition: 'background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s',
             }}
-            className="group-hover:text-zinc-200"
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              e.currentTarget.style.color = '#FAFAFA';
+              e.currentTarget.style.transform = 'scale(1.08)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+              e.currentTarget.style.color = 'var(--text-muted)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
           >
-            Learn More
-          </span>
-          <ChevronRight
-            size={16}
-            style={{
-              color: 'var(--text-muted)',
-              transition: 'transform 0.25s, color 0.25s',
-            }}
-            className="group-hover:translate-x-1 group-hover:text-white"
-          />
+            <Github size={15} />
+          </a>
         </div>
       </div>
     </motion.div>
@@ -313,7 +380,26 @@ function ProjectDetailsModal({ project, onClose }: ProjectDetailsModalProps) {
         >
           <div>
             {/* Category Tags */}
-            <div style={{ display: 'flex', gap: 6, marginBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: 6, marginBottom: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              {project.badge && (
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 9,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(37, 99, 235, 0.15))',
+                    border: '1px solid rgba(139, 92, 246, 0.35)',
+                    color: '#C084FC',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontWeight: 600,
+                    boxShadow: '0 0 8px rgba(124, 58, 237, 0.15)',
+                  }}
+                >
+                  ✦ {project.badge}
+                </span>
+              )}
               {project.categories.map(cat => (
                 <span
                   key={cat}

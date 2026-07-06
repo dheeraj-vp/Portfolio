@@ -20,6 +20,8 @@ export interface Project {
   techStack: string[]; // Dynamic string array parsed by UI (splitting at colons)
   tags: string[];      // Brief tags to display on card
   relatedBlogs?: RelatedBlog[];
+  isFeatured?: boolean; // To highlight important projects
+  badge?: string;       // Custom badge text (e.g., 'Patent')
 }
 
 export const projects: Project[] = [
@@ -27,6 +29,8 @@ export const projects: Project[] = [
     id: 'caip',
     title: 'Counterfactual Automation Intelligence Platform (CAIP)',
     categories: ['DevOps', 'FullStack'],
+    isFeatured: true,
+    badge: 'Patent Project',
     duration: '22 Jan 2026 – 25 Mar 2026',
     overview:
       "CAIP implements a complete incident management lifecycle from alert ingestion to automated resolution, featuring intelligent correlation, adaptive severity evaluation, confidence-weighted automation, and counterfactual outcome analysis. Built on Spring Boot microservices architecture with event-driven communication, the platform ensures high availability, fault tolerance, and regulatory compliance. The platform's core innovation is counterfactual automation evaluation - a deterministic method for comparing historical automated vs manual incident resolution outcomes to improve automation decision quality and prevent harmful automation.",
