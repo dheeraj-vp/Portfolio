@@ -5,6 +5,7 @@ import { AboutSection } from './components/about/AboutSection';
 import { ExperienceSection } from './components/experience/ExperienceSection';
 import { ProjectsSection } from './components/projects/ProjectsSection';
 import { ResumeSection } from './components/resume/ResumeSection';
+import { ContactSection } from './components/contact/ContactSection';
 
 // Placeholder sections — will be built next
 function PlaceholderSection({ id, label }: { id: string; label: string }) {
@@ -32,7 +33,7 @@ function App() {
         <ProjectsSection />
         <PlaceholderSection id="blogs"      label="Blogs" />
         <ResumeSection />
-        <PlaceholderSection id="contact"    label="Contact" />
+        <ContactSection />
       </main>
     </div>
   );

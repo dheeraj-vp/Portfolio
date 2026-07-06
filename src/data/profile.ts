@@ -42,10 +42,10 @@ export const profile = {
   },
 
   socials: [
-    { id: 'github', label: 'GitHub', href: 'https://github.com/dheerajvp', icon: 'github' },
-    { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/dheerajvp', icon: 'linkedin' },
-    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/dheerajvp', icon: 'leetcode' },
-    { id: 'email', label: 'Email', href: 'mailto:dheerajvp@example.com', icon: 'mail' },
+    { id: 'github', label: 'GitHub', href: 'https://github.com/dheeraj-vp', icon: 'github' },
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/dheeraj-vp/', icon: 'linkedin' },
+    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/u/dheeraj_vp/', icon: 'leetcode' },
+    { id: 'email', label: 'Email', href: 'mailto:dheerajvp8055@gmail.com', icon: 'mail' },
   ],
 
   proofTechs: [
