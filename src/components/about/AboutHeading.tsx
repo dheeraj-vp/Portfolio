@@ -5,7 +5,7 @@ export function AboutHeading() {
   const reduced = useReducedMotion();
 
   const words1 = ['The', 'person', 'behind'];
-  const words2 = ['the', 'infrastructure.'];
+  const words2 = ['the', 'software.'];
 
   const wordVariant = {
     initial: reduced ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 24, filter: 'blur(8px)' },

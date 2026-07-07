@@ -37,6 +37,7 @@ export const about = {
 
   journey: [
     { year: '2023', title: 'Started CSE @ VIT', type: 'education' as const, detail: 'Began B.Tech in CSE & Business Systems at VIT Vellore.' },
+    { year: 'May–Jun 2024', title: 'Web Dev Intern @ Karooya', type: 'experience' as const, detail: 'Web Development Intern (Remote) — Karooya Technologies. Built real-time full-stack AI chatbot.' },
     { year: 'Jul 2024', title: 'Full-Stack Bootcamp', type: 'achievement' as const, detail: 'Completed Full-Stack Web Development Bootcamp on Udemy.' },
     { year: 'Sep 2024', title: 'Kubernetes Certified', type: 'achievement' as const, detail: 'Container & Kubernetes Essentials V2 — IBM via Credly.' },
     { year: 'Dec 2024', title: 'Web Dev Lead · IEEE RAS', type: 'experience' as const, detail: 'Joined IEEE RAS VIT as Web Development Team Lead.' },
