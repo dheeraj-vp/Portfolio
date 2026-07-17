@@ -285,7 +285,7 @@ export function ContactSection() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Form submission states
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [progress, setProgress] = useState(0);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
@@ -336,8 +336,8 @@ export function ContactSection() {
     }
   };
 
-  // Simulated Send
-  const handleSubmit = (e: React.FormEvent) => {
+  // Submit via Web3Forms API
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Trigger touched & validate all
@@ -359,16 +359,51 @@ export function ContactSection() {
     setFormState('sending');
     setProgress(0);
 
-    const interval = setInterval(() => {
+    // Animate progress up to 90% while waiting for API
+    const progressInterval = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setFormState('success');
-          return 100;
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return 90;
         }
-        return prev + 8;
+        return prev + 5;
       });
-    }, 80);
+    }, 100);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'd1cf9044-0979-4b2a-a0ff-6422e10ad584',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Portfolio Contact Form Submission',
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+      clearInterval(progressInterval);
+
+      if (response.status === 200 && result.success) {
+        setProgress(100);
+        setTimeout(() => {
+          setFormState('success');
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setTouched({});
+          setFormErrors({});
+        }, 200);
+      } else {
+        setFormState('error');
+      }
+    } catch (err) {
+      clearInterval(progressInterval);
+      setFormState('error');
+    }
   };
 
   // Clipboard copies
@@ -1041,6 +1076,91 @@ export function ContactSection() {
                   </div>
                 </motion.div>
               )}
+
+              {formState === 'error' && (
+                <motion.div
+                  key="error-state"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  style={{
+                    background: 'rgba(255,255,255, 0.02)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '2.5rem 2rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: 380,
+                    textAlign: 'center',
+                    position: 'relative',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: '50%',
+                      background: 'rgba(239,68,68,0.1)',
+                      border: '1px solid rgba(239,68,68,0.2)',
+                      color: '#EF4444',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1.5rem',
+                    }}
+                  >
+                    <AlertCircle size={24} />
+                  </div>
+
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 18,
+                      fontWeight: 700,
+                      color: '#FAFAFA',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    Failed to Send Message
+                  </h3>
+
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 13.5,
+                      color: 'var(--text-2)',
+                      lineHeight: 1.5,
+                      maxWidth: '22rem',
+                      marginBottom: '2rem',
+                    }}
+                  >
+                    Something went wrong. Please check your network connection or try emailing me directly at{' '}
+                    <a href={emailObj.href} style={{ color: '#3B82F6', textDecoration: 'underline' }}>{emailRaw}</a>.
+                  </p>
+
+                  <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+                    <button
+                      onClick={() => setFormState('idle')}
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        background: 'linear-gradient(135deg, #7C3AED, #2563EB)',
+                        border: 'none',
+                        color: '#FFFFFF',
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: 12.5,
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 10px rgba(124,58,237,0.15)',
+                      }}
+                    >
+                      Try Again
+                    </button>
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
 
             {/* Response Expectations Card */}
@@ -1212,7 +1332,7 @@ export function ContactSection() {
             </a>
 
             <a
-              href="https://drive.google.com/uc?export=download&id=19prYQEFgVxUjvrWRyl8CsFrBHTTGJCy4"
+              href="https://drive.google.com/uc?export=download&id=1J5ZhMLIPIyqMlPJMQhQmZNGdSVgq2g3n"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

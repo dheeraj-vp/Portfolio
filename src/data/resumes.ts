@@ -35,8 +35,8 @@ export const resumesData: Record<'fullStack' | 'devOps', ResumeVariant> = {
     id: 'fullstack',
     name: 'Full-Stack Resume',
     title: 'Full-Stack & Backend Engineer',
-    driveLink: 'https://drive.google.com/file/d/19prYQEFgVxUjvrWRyl8CsFrBHTTGJCy4/view?usp=drive_link',
-    downloadLink: 'https://drive.google.com/uc?export=download&id=19prYQEFgVxUjvrWRyl8CsFrBHTTGJCy4',
+    driveLink: 'https://drive.google.com/file/d/1J5ZhMLIPIyqMlPJMQhQmZNGdSVgq2g3n/view?usp=drive_link',
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1J5ZhMLIPIyqMlPJMQhQmZNGdSVgq2g3n',
     summary: 'Software Engineer specializing in building scalable backend systems, robust API architectures, and interactive web applications. Experienced in React/Next.js, Spring Boot, Go, and relational databases with a strong emphasis on clean code, automated testing, and performance optimization.',
     skills: [
       {
