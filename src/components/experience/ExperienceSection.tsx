@@ -498,7 +498,7 @@ export function ExperienceSection() {
       <style>{`
         .exp-layout {
           display: grid;
-          grid-template-columns: 220px 1fr;
+          grid-template-columns: 240px 1fr;
           gap: 2rem;
           align-items: flex-start;
         }
@@ -509,29 +509,36 @@ export function ExperienceSection() {
         @media (max-width: 768px) {
           .exp-layout {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
           }
           .exp-rail {
             position: static;
             display: flex;
             flex-direction: row;
             overflow-x: auto;
-            gap: 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             scrollbar-width: none;
+            -ms-overflow-style: none;
           }
           .exp-rail::-webkit-scrollbar { display: none; }
           .exp-rail button {
-            flex-direction: column;
-            min-width: 120px;
-            padding: 0.5rem 0.75rem !important;
+            flex-shrink: 0;
+            flex-direction: row !important;
+            align-items: center !important;
+            white-space: nowrap;
+            min-width: auto;
+            padding: 0.6rem 1rem !important;
+            border: 1px solid rgba(255,255,255,0.06) !important;
+            background: rgba(255,255,255,0.02) !important;
           }
           .exp-rail button > div:first-child {
-            flex-direction: row !important;
-            padding-top: 0 !important;
+            display: none !important;
           }
-          .exp-rail button > div:first-child > div:last-child {
-            display: none;
+          .exp-rail button > div:last-child {
+            padding-bottom: 0 !important;
           }
         }
       `}</style>

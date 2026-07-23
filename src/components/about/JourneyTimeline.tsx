@@ -36,8 +36,9 @@ function MilestoneRow({
     <motion.div
       initial={{ opacity: 0, x: -16 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: '-20px' }}
       transition={{ ...SPRING_SMOOTH, delay: 0.15 + index * 0.07 }}
+      className="journey-row"
       style={{
         display: 'grid',
         gridTemplateColumns: '120px 32px 1fr',
@@ -278,13 +279,12 @@ export function JourneyTimeline() {
       </div>
 
       <style>{`
-        /* Hide detail text on mobile */
-        @media (max-width: 480px) {
-          .journey-detail { display: none !important; }
-        }
         /* Tighten year column on mobile */
-        @media (max-width: 480px) {
-          .journey-row { grid-template-columns: 80px 28px 1fr !important; }
+        @media (max-width: 540px) {
+          .journey-row { grid-template-columns: 70px 24px 1fr !important; }
+        }
+        @media (max-width: 380px) {
+          .journey-row { grid-template-columns: 55px 20px 1fr !important; }
         }
       `}</style>
     </div>

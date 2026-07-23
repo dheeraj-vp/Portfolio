@@ -145,17 +145,21 @@ function SecondaryButton({
 
 export function HeroCTAs({ primary, secondary }: CTAProps) {
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <MagneticButton
-        label={primary.label}
-        href={primary.href}
-        delay={HERO_DELAYS.ctaBase}
-      />
-      <SecondaryButton
-        label={secondary.label}
-        href={secondary.href}
-        delay={HERO_DELAYS.ctaBase + HERO_DELAYS.ctaStagger}
-      />
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+      <div className="w-full sm:w-auto flex justify-center">
+        <MagneticButton
+          label={primary.label}
+          href={primary.href}
+          delay={HERO_DELAYS.ctaBase}
+        />
+      </div>
+      <div className="w-full sm:w-auto flex justify-center">
+        <SecondaryButton
+          label={secondary.label}
+          href={secondary.href}
+          delay={HERO_DELAYS.ctaBase + HERO_DELAYS.ctaStagger}
+        />
+      </div>
     </div>
   );
 }

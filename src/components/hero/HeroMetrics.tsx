@@ -53,8 +53,7 @@ export function HeroMetrics({ metrics }: HeroMetricsProps) {
       initial={reduced ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ...SPRING_SMOOTH, delay: HERO_DELAYS.metricsBase - 0.1 }}
-      className="flex flex-wrap items-center gap-y-5"
-      style={{ gap: '0' }}
+      className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-y-4 gap-x-2 sm:gap-0"
       role="list"
       aria-label="Engineering metrics"
     >
@@ -73,13 +72,13 @@ export function HeroMetrics({ metrics }: HeroMetricsProps) {
         >
           {/* Metric item */}
           <div
-            className="flex flex-col items-start px-5 py-1 group cursor-default"
-            style={{ minWidth: '80px' }}
+            className="flex flex-col items-start px-3 sm:px-5 py-1 group cursor-default"
+            style={{ minWidth: '70px' }}
           >
             <div
               className="font-display font-bold leading-none"
               style={{
-                fontSize: 'clamp(22px, 2.5vw, 28px)',
+                fontSize: 'clamp(20px, 2.5vw, 28px)',
                 color: '#FAFAFA',
               }}
             >
@@ -88,7 +87,7 @@ export function HeroMetrics({ metrics }: HeroMetricsProps) {
                   <NumberTicker value={metric.value} />
                   {metric.unit && (
                     <span
-                      className="font-mono-accent"
+                      className="font-mono-accent ml-0.5"
                       style={{ color: '#7C3AED', fontSize: '0.85em' }}
                     >
                       {metric.unit}
@@ -112,9 +111,9 @@ export function HeroMetrics({ metrics }: HeroMetricsProps) {
             </div>
           </div>
 
-          {/* Separator between items (not after last) */}
+          {/* Separator between items on desktop (not after last) */}
           {i < metrics.length - 1 && (
-            <div className="metric-sep mx-1" aria-hidden="true" />
+            <div className="hidden sm:block metric-sep mx-1" aria-hidden="true" />
           )}
         </motion.div>
       ))}

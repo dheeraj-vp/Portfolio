@@ -4,21 +4,20 @@ import { SPRING_SMOOTH } from '../../lib/animation';
 export function AboutHeading() {
   const reduced = useReducedMotion();
 
-  const words1 = ['The', 'person', 'behind'];
-  const words2 = ['the', 'software.'];
+  const words = ['The', 'person', 'behind', 'the', 'software.'];
 
   const wordVariant = {
-    initial: reduced ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 24, filter: 'blur(8px)' },
+    initial: reduced ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 20, filter: 'blur(6px)' },
     animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
   };
 
   return (
-    <div style={{ marginBottom: '3rem' }}>
+    <div style={{ marginBottom: '2.5rem' }}>
       {/* Section label */}
       <motion.span
         initial={reduced ? {} : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 0.5, delay: 0.1 }}
         style={{
           fontFamily: 'var(--font-mono)',
@@ -37,8 +36,8 @@ export function AboutHeading() {
       <motion.div
         initial={reduced ? {} : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: '-20px' }}
+        transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         style={{
           height: 1,
           background: 'rgba(255,255,255,0.08)',
@@ -50,55 +49,35 @@ export function AboutHeading() {
 
       {/* Animated headline */}
       <h2
-        className="font-display"
+        className="font-display flex flex-wrap items-center gap-x-[0.28em] gap-y-1"
         style={{
-          fontSize: 'clamp(32px, 4.5vw, 56px)',
+          fontSize: 'clamp(26px, 5.5vw, 56px)',
           fontWeight: 700,
-          lineHeight: 1.1,
+          lineHeight: 1.15,
           letterSpacing: '-0.02em',
           color: '#FAFAFA',
         }}
       >
-        <div className="block overflow-visible">
-          {words1.map((word, i) => (
+        {words.map((word, i) => {
+          const isAccent = word === 'software.';
+          return (
             <motion.span
-              key={`w1-${i}`}
+              key={`w-${i}`}
               variants={wordVariant}
               initial="initial"
               whileInView="animate"
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ ...SPRING_SMOOTH, delay: 0.25 + i * 0.08 }}
+              viewport={{ once: true, margin: '-20px' }}
+              transition={{ ...SPRING_SMOOTH, delay: 0.15 + i * 0.07 }}
               className="inline-block"
-              style={{ marginRight: '0.28em' }}
             >
-              {word}
+              {isAccent ? (
+                <span className="gradient-text">{word}</span>
+              ) : (
+                word
+              )}
             </motion.span>
-          ))}
-        </div>
-        <div className="block overflow-visible">
-          {words2.map((word, i) => {
-            const globalIndex = words1.length + i;
-            const isAccent = word === 'infrastructure.';
-            return (
-              <motion.span
-                key={`w2-${i}`}
-                variants={wordVariant}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ ...SPRING_SMOOTH, delay: 0.25 + globalIndex * 0.08 }}
-                className="inline-block"
-                style={{ marginRight: '0.28em' }}
-              >
-                {isAccent ? (
-                  <span className="gradient-text">{word}</span>
-                ) : (
-                  word
-                )}
-              </motion.span>
-            );
-          })}
-        </div>
+          );
+        })}
       </h2>
     </div>
   );

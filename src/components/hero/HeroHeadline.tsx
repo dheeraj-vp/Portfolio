@@ -78,9 +78,9 @@ export function HeroHeadline({ line1, line2 }: HeroHeadlineProps) {
     <h1
       className="font-display"
       style={{
-        fontSize: 'clamp(38px, 5.5vw, 76px)',
+        fontSize: 'clamp(28px, 7vw, 76px)',
         fontWeight: 700,
-        lineHeight: 1.06,
+        lineHeight: 1.08,
         letterSpacing: '-0.02em',
         color: '#FAFAFA',
       }}

@@ -93,15 +93,14 @@ export function Navbar() {
       <AnimatePresence>
         {visible && (
           <motion.nav
-            initial={{ y: -80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -80, opacity: 0 }}
+            initial={{ y: -80, opacity: 0, x: '-50%' }}
+            animate={{ y: 0, opacity: 1, x: '-50%' }}
+            exit={{ y: -80, opacity: 0, x: '-50%' }}
             transition={{ type: 'spring', damping: 22, stiffness: 200 }}
             style={{
               position: 'fixed',
               top: 16,
               left: '50%',
-              transform: 'translateX(-50%)',
               zIndex: 60,
               width: 'calc(100% - 2rem)',
               maxWidth: 680,
@@ -111,7 +110,7 @@ export function Navbar() {
             <motion.div
               animate={{
                 scale: scrolled ? 0.98 : 1,
-                background: scrolled ? 'rgba(9,9,11,0.92)' : 'rgba(9,9,11,0.7)',
+                background: scrolled ? 'rgba(9,9,11,0.92)' : 'rgba(9,9,11,0.75)',
               }}
               transition={{ duration: 0.2 }}
               style={{
@@ -120,7 +119,7 @@ export function Navbar() {
                 border: '1px solid rgba(255,255,255,0.08)',
                 boxShadow: '0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.04) inset',
                 borderRadius: 14,
-                padding: '8px',
+                padding: '8px 12px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -179,7 +178,8 @@ export function Navbar() {
 
               {/* Mobile: active section label + hamburger */}
               <div className="nav-mobile-row" style={{ display: 'none', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '0 4px' }}>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: '#FAFAFA', fontWeight: 500 }}>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#FAFAFA', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7C3AED' }} />
                   {NAV_LINKS.find(l => l.href === `#${activeSection}`)?.label ?? 'Home'}
                 </span>
 
@@ -187,28 +187,31 @@ export function Navbar() {
                   onClick={() => setMenuOpen(o => !o)}
                   aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                   style={{
-                    background: 'none',
-                    border: 'none',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 8,
                     cursor: 'pointer',
-                    padding: '6px',
+                    padding: '10px 12px',
+                    minWidth: 44,
+                    minHeight: 44,
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 5,
+                    gap: 4,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
                 >
                   <motion.span
-                    animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                    style={{ display: 'block', width: 18, height: 2, background: '#A1A1AA', borderRadius: 2, transformOrigin: 'center' }}
+                    animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                    style={{ display: 'block', width: 20, height: 2, background: '#FAFAFA', borderRadius: 2, transformOrigin: 'center' }}
                   />
                   <motion.span
                     animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-                    style={{ display: 'block', width: 18, height: 2, background: '#A1A1AA', borderRadius: 2 }}
+                    style={{ display: 'block', width: 20, height: 2, background: '#FAFAFA', borderRadius: 2 }}
                   />
                   <motion.span
-                    animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                    style={{ display: 'block', width: 18, height: 2, background: '#A1A1AA', borderRadius: 2, transformOrigin: 'center' }}
+                    animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                    style={{ display: 'block', width: 20, height: 2, background: '#FAFAFA', borderRadius: 2, transformOrigin: 'center' }}
                   />
                 </button>
               </div>
@@ -233,7 +236,7 @@ export function Navbar() {
                     boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 2,
+                    gap: 4,
                   }}
                 >
                   {NAV_LINKS.map((link) => {
@@ -244,19 +247,22 @@ export function Navbar() {
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
                         style={{
-                          padding: '10px 14px',
+                          padding: '12px 16px',
                           borderRadius: 10,
-                          background: isActive ? 'rgba(255,255,255,0.07)' : 'transparent',
+                          background: isActive ? 'rgba(124,58,237,0.15)' : 'transparent',
                           color: isActive ? '#FAFAFA' : '#A1A1AA',
                           fontFamily: 'var(--font-body)',
-                          fontSize: 14,
-                          fontWeight: isActive ? 500 : 400,
+                          fontSize: 15,
+                          fontWeight: isActive ? 600 : 400,
                           textDecoration: 'none',
-                          display: 'block',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
                           transition: 'background 0.15s, color 0.15s',
                         }}
                       >
-                        {link.label}
+                        <span>{link.label}</span>
+                        {isActive && <span style={{ color: '#7C3AED', fontSize: 12 }}>●</span>}
                       </a>
                     );
                   })}

@@ -232,16 +232,17 @@ export function ResumeSection() {
         </div>
 
         {/* Tab Toggle Control */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', width: '100%' }}>
           <div
             style={{
-              display: 'inline-flex',
+              display: 'flex',
               background: 'rgba(255, 255, 255, 0.03)',
               border: '1px solid rgba(255, 255, 255, 0.06)',
               padding: '4px',
               borderRadius: 'var(--radius-pill)',
               position: 'relative',
               gap: 4,
+              maxWidth: '100%',
             }}
           >
             {(['fullStack', 'devOps'] as const).map(tab => (
@@ -253,7 +254,7 @@ export function ResumeSection() {
                   fontSize: 12,
                   fontWeight: 600,
                   color: activeTab === tab ? '#FAFAFA' : 'var(--text-muted)',
-                  padding: '8px 24px',
+                  padding: '8px 16px',
                   borderRadius: 'var(--radius-pill)',
                   background: 'transparent',
                   border: 'none',
@@ -262,9 +263,11 @@ export function ResumeSection() {
                   transition: 'color 0.2s',
                   zIndex: 1,
                   outline: 'none',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                {tab === 'fullStack' ? 'Full-Stack Resume' : 'DevOps / SRE Resume'}
+                <span className="hidden sm:inline">{tab === 'fullStack' ? 'Full-Stack Resume' : 'DevOps / SRE Resume'}</span>
+                <span className="inline sm:hidden">{tab === 'fullStack' ? 'Full-Stack' : 'DevOps / SRE'}</span>
                 {activeTab === tab && (
                   <motion.div
                     layoutId="active-resume-tab"
@@ -285,7 +288,7 @@ export function ResumeSection() {
         </div>
 
         {/* Google Drive PDF Preview Container */}
-        <div style={{ maxWidth: '54rem', margin: '0 auto', marginBottom: '3rem' }}>
+        <div style={{ maxWidth: '54rem', margin: '0 auto', marginBottom: '2.5rem' }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -301,9 +304,7 @@ export function ResumeSection() {
                 boxShadow: '0 20px 48px rgba(0,0,0,0.5)',
                 position: 'relative',
                 overflow: 'hidden',
-                aspectRatio: '16/10',
-                minHeight: '600px',
-                height: '75vh',
+                height: 'clamp(420px, 65vh, 700px)',
               }}
             >
               {/* Highlight line */}
@@ -342,19 +343,14 @@ export function ResumeSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 16,
-            flexWrap: 'wrap',
-          }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto"
         >
           {/* View PDF Resume in New Tab */}
           <a
             href={activeResume.driveLink}
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto text-center justify-center"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -396,6 +392,7 @@ export function ResumeSection() {
             href={activeResume.downloadLink}
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto text-center justify-center"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

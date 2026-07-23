@@ -1006,8 +1006,11 @@ export function ProjectsSection() {
           style={{
             display: 'flex',
             justifyContent: 'center',
-            marginBottom: '3rem',
+            marginBottom: '2.5rem',
+            width: '100%',
+            overflowX: 'auto',
           }}
+          className="no-scrollbar"
         >
           <div
             style={{
@@ -1019,6 +1022,7 @@ export function ProjectsSection() {
               gap: 2,
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
+              flexShrink: 0,
             }}
           >
             {tabs.map(tab => {
@@ -1029,7 +1033,7 @@ export function ProjectsSection() {
                   onClick={() => setActiveTab(tab)}
                   style={{
                     position: 'relative',
-                    padding: '8px 20px',
+                    padding: '8px 18px',
                     borderRadius: 'var(--radius-pill)',
                     background: 'none',
                     border: 'none',
@@ -1042,6 +1046,7 @@ export function ProjectsSection() {
                     cursor: 'pointer',
                     transition: 'color 0.25s',
                     outline: 'none',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {isActive && (
@@ -1073,7 +1078,7 @@ export function ProjectsSection() {
           className="projects-grid-layout"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: '1.5rem',
           }}
         >

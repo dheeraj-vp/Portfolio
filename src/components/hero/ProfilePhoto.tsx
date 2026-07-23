@@ -106,14 +106,14 @@ export function ProfilePhoto() {
       <OrbitRing reduced={reduced} />
 
       {/* ── TiltedCard portrait ──────────────── */}
-      <div style={{ position: 'relative', zIndex: 10, width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 'min(380px, 80vw)' }}>
         <TiltedCard
           imageSrc="/1.png"
           altText="Dheeraj V P — Software Development Engineer"
           containerWidth="100%"
-          containerHeight="380px"
-          imageWidth="380px"
-          imageHeight="380px"
+          containerHeight="clamp(240px, 70vw, 380px)"
+          imageWidth="clamp(240px, 70vw, 380px)"
+          imageHeight="clamp(240px, 70vw, 380px)"
           rotateAmplitude={8}
           scaleOnHover={1.04}
           showMobileWarning={false}

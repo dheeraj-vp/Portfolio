@@ -169,6 +169,8 @@ function ContactCard({
               fontWeight: 500,
               color: '#FAFAFA',
               marginTop: 2,
+              wordBreak: 'break-word',
+              overflowWrap: 'anywhere',
             }}
           >
             {value}
@@ -725,9 +727,9 @@ export function ContactSection() {
                   }}
                   noValidate
                 >
-                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <div className="flex flex-col sm:flex-row gap-4 w-full">
                     {/* Name */}
-                    <div style={{ flex: 1, minWidth: 200, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
                       <label htmlFor="form-name" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)' }}>Name</label>
                       <input
                         id="form-name"
@@ -740,10 +742,11 @@ export function ContactSection() {
                           background: 'rgba(255,255,255,0.01)',
                           border: formErrors.name ? '1px solid #EF4444' : '1px solid rgba(255,255,255,0.08)',
                           borderRadius: '8px',
-                          padding: '10px 14px',
+                          padding: '12px 14px',
+                          minHeight: 44,
                           color: '#FAFAFA',
                           fontFamily: 'var(--font-sans)',
-                          fontSize: 13.5,
+                          fontSize: 14,
                           outline: 'none',
                           boxShadow: formErrors.name ? '0 0 10px rgba(239,68,68,0.1)' : 'none',
                           transition: 'border-color 0.2s, box-shadow 0.2s',
@@ -764,7 +767,7 @@ export function ContactSection() {
                     </div>
 
                     {/* Email */}
-                    <div style={{ flex: 1, minWidth: 200, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
                       <label htmlFor="form-email" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)' }}>Email</label>
                       <input
                         id="form-email"
@@ -777,10 +780,11 @@ export function ContactSection() {
                           background: 'rgba(255,255,255,0.01)',
                           border: formErrors.email ? '1px solid #EF4444' : '1px solid rgba(255,255,255,0.08)',
                           borderRadius: '8px',
-                          padding: '10px 14px',
+                          padding: '12px 14px',
+                          minHeight: 44,
                           color: '#FAFAFA',
                           fontFamily: 'var(--font-sans)',
-                          fontSize: 13.5,
+                          fontSize: 14,
                           outline: 'none',
                           boxShadow: formErrors.email ? '0 0 10px rgba(239,68,68,0.1)' : 'none',
                           transition: 'border-color 0.2s, box-shadow 0.2s',
