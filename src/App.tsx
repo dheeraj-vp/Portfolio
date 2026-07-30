@@ -1,26 +1,13 @@
 import './index.css';
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
 import { ExperienceSection } from './components/experience/ExperienceSection';
 import { ProjectsSection } from './components/projects/ProjectsSection';
+import { BlogsSection } from './components/blogs/BlogsSection';
 import { ResumeSection } from './components/resume/ResumeSection';
 import { ContactSection } from './components/contact/ContactSection';
-
-// Placeholder sections — will be built next
-function PlaceholderSection({ id, label }: { id: string; label: string }) {
-  return (
-    <section
-      id={id}
-      className="min-h-screen flex items-center justify-center"
-      style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
-    >
-      <p style={{ color: '#3F3F46', fontFamily: 'var(--font-mono)', fontSize: 13 }}>
-        {label} — coming soon
-      </p>
-    </section>
-  );
-}
 
 function App() {
   return (
@@ -31,10 +18,11 @@ function App() {
         <AboutSection />
         <ExperienceSection />
         <ProjectsSection />
-        <PlaceholderSection id="blogs"      label="Blogs" />
+        <BlogsSection />
         <ResumeSection />
         <ContactSection />
       </main>
+      <Analytics />
     </div>
   );
 }

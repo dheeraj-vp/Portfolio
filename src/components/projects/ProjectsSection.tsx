@@ -659,6 +659,8 @@ function ProjectDetailsModal({ project, onClose }: ProjectDetailsModalProps) {
                   <a
                     key={idx}
                     href={blog.url}
+                    target={blog.url.startsWith('http') ? '_blank' : undefined}
+                    rel={blog.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                     onClick={e => {
                       // Smooth scroll to blogs section if it links to #blogs
                       if (blog.url === '#blogs') {

@@ -57,6 +57,16 @@ export const projects: Project[] = [
     tags: ['Spring Boot', 'RabbitMQ', 'Redis', 'PostgreSQL', 'Docker'],
     relatedBlogs: [
       {
+        title: 'Explainability by Design: Decomposing Every Decision in Under 50ms',
+        url: 'https://medium.com/@dheerajvp8055/explainability-by-design-decomposing-every-decision-in-under-50ms-1a8681ddfd15',
+        date: 'Medium Article',
+      },
+      {
+        title: 'Architecture Deep Dive: 5 Services, One Event Backbone',
+        url: 'https://medium.com/@dheerajvp8055/architecture-deep-dive-5-services-one-event-backbone-11b5be5cdd56',
+        date: 'Medium Article',
+      },
+      {
         title: 'Deterministic Analysis of Incident Remediation Outcomes',
         url: '#blogs', // Links to blogs section
         date: 'Mar 28, 2026',

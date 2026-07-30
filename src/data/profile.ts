@@ -29,7 +29,7 @@ export const profile = {
   },
 
   metrics: [
-    { value: 1500, unit: '×', label: 'Automation Speedup', isCounter: true },
+    { value: 2, unit: '×', label: 'Automation Speedup', isCounter: true },
     { value: 112, unit: 'ms', label: 'Incident Resolution', isCounter: true },
     { value: 98, unit: '%', label: 'Test Coverage', isCounter: true },
     { value: 2, unit: '×', label: 'AWS Certified', isCounter: true },

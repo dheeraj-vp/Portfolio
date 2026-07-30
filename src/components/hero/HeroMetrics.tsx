@@ -9,7 +9,7 @@ interface NumberTickerProps {
   duration?: number;
 }
 
-function NumberTicker({ value, duration = 1500 }: NumberTickerProps) {
+function NumberTicker({ value, duration = 2 }: NumberTickerProps) {
   const [display, setDisplay] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
